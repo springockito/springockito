@@ -10,6 +10,14 @@
         <spring.version>3.0.5.RELEASE</spring.version>
     </properties>
 
+		<licenses>
+			<license>
+				<name>MIT</name>
+				<url>http://www.opensource.org/licenses/mit-license.php</url>
+				<comments>Copyright (c) 2011 Jakub Janczak</comments>
+			</license>
+		</licenses>
+
     <build>
         <plugins>
             <plugin>
@@ -35,21 +43,25 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
+						<scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
-            <version>${spring.version}</version>
+						<version>${spring.version}</version>
+						<scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-beans</artifactId>
-            <version>${spring.version}</version>
+						<version>${spring.version}</version>
+						<scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
+						<version>${spring.version}</version>
+						<scope>provided</scope>
         </dependency>
 
         <dependency>
