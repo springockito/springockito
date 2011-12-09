@@ -5,18 +5,39 @@
     <artifactId>springockito</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <url>https://bitbucket.org/kubek2k/springockito</url>
+    <description>Simple tool to create mocks in Spring environment</description>
+
+    <parent>
+      <groupId>org.sonatype.oss</groupId>
+      <artifactId>oss-parent</artifactId>
+      <version>7</version>
+    </parent>
 
     <properties>
         <spring.version>3.0.5.RELEASE</spring.version>
     </properties>
 
-		<licenses>
-			<license>
-				<name>MIT</name>
-				<url>http://www.opensource.org/licenses/mit-license.php</url>
-				<comments>Copyright (c) 2011 Jakub Janczak</comments>
-			</license>
-		</licenses>
+    <licenses>
+		<license>
+			<name>MIT</name>
+			<url>http://www.opensource.org/licenses/mit-license.php</url>
+			<comments>Copyright (c) 2011 Jakub Janczak</comments>
+		</license>
+	</licenses>
+
+    <developers>
+        <developer>
+            <id>kubek2k</id>
+            <email>kubek2k@gmail.com</email>
+            <name>Jakub Janczak</name>
+        </developer>     
+    </developers>
+
+    <scm>
+        <url>https://bitbucket.org/kubek2k/springockito</url>
+        <connection>https://bitbucket.org/kubek2k/springockito/src</connection>
+        <developerConnection>scm:hg:https://bitbucket.org/kubek2k/springockito</developerConnection>
+    </scm>
 
     <build>
         <plugins>
