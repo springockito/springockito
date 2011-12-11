@@ -36,7 +36,7 @@
     <scm>
         <url>https://bitbucket.org/kubek2k/springockito</url>
         <connection>https://bitbucket.org/kubek2k/springockito/src/springockito</connection>
-        <developerConnection>scm:hg:https://bitbucket.org/kubek2k/springockito/springockito</developerConnection>
+        <developerConnection>scm:hg:https://bitbucket.org/kubek2k/springockito</developerConnection>
     </scm>
 
     <build>
