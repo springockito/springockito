@@ -1,13 +1,13 @@
 package org.kubek2k.springockito.annotations;
 
+import org.kubek2k.springockito.annotations.factory.MockFactoryBean;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 
 class MockitoBeansDefiner {
-    AbstractBeanDefinition createMockDefinition(Class<?> mockClass) {
-        return BeanDefinitionBuilder.genericBeanDefinition("org.mockito.Mockito")
-                .setFactoryMethod("mock")
-                .addConstructorArgValue(mockClass.getCanonicalName())
+    public AbstractBeanDefinition createMockFactoryBeanDefinition(Class<?> mockClass) {
+        return BeanDefinitionBuilder.genericBeanDefinition(MockFactoryBean.class.getCanonicalName())
+                .addConstructorArgValue(mockClass)
                 .getBeanDefinition();
     }
 }

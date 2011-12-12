@@ -28,7 +28,7 @@ public class SpringockitoContextLoader extends GenericXmlContextLoader {
     private void registerMocks(GenericApplicationContext context, Map<String, Class<?>> mockedBeans) {
         for (Map.Entry<String, Class<?>> beanEntry : this.mockedBeans.entrySet()) {
             context.registerBeanDefinition(beanEntry.getKey(),
-                    mockitoBeansDefiner.createMockDefinition(beanEntry.getValue()));
+                    mockitoBeansDefiner.createMockFactoryBeanDefinition(beanEntry.getValue()));
         }
     }
 
