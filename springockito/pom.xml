@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.kubek2k</groupId>
     <artifactId>springockito</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <url>https://bitbucket.org/kubek2k/springockito</url>
     <description>Simple tool to create mocks in Spring environment</description>
     <name>Springockito</name>
