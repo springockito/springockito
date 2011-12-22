@@ -8,11 +8,11 @@ public class MockitoMockBeanDefinitionParser extends AbstractSingleBeanDefinitio
     
     @Override
     protected String getBeanClassName(Element element) {
-        return "org.mockito.Mockito";
+        return "org.kubek2k.mockito.spring.factory.MockFactoryBean";
     }
     
     @Override
     protected void doParse(Element element, BeanDefinitionBuilder bean) {
-        bean.setFactoryMethod("mock").addConstructorArgValue(element.getAttribute("class"));
+        bean.addConstructorArgValue(element.getAttribute("class"));
     }
 }
