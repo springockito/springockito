@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.kubek2k</groupId>
+  <artifactId>springockito-annotations</artifactId>
+  <version>1.0.2-SNAPSHOT</version>
+  <name>Springockito annotations</name>
+
+  <parent>
+    <groupId>org.kubek2k</groupId>
+    <artifactId>springockito-parent</artifactId>
+    <version>1.0.3-SNAPSHOT</version>
+  </parent>
+  
+  <scm>
+    <url>https://bitbucket.org/kubek2k/springockito</url>
+    <connection>https://bitbucket.org/kubek2k/springockito</connection>
+    <developerConnection>scm:hg:https://bitbucket.org/kubek2k/springockito</developerConnection>
+  </scm>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+        <version>${spring.version}</version>
+        <scope>provided</scope>
+    </dependency>
+  </dependencies>
+</project>
