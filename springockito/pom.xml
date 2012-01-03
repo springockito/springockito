@@ -1,56 +1,58 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.kubek2k</groupId>
-  <artifactId>springockito</artifactId>
-  <version>1.0.4-SNAPSHOT</version>
-  <url>https://bitbucket.org/kubek2k/springockito</url>
-  <description>Simple tool to create mocks in Spring environment</description>
-  <name>Springockito</name>
-
-  <parent>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <groupId>org.kubek2k</groupId>
-    <artifactId>springockito-parent</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
-  </parent>
-
-  <scm>
+    <artifactId>springockito</artifactId>
+    <version>1.0.4-SNAPSHOT</version>
     <url>https://bitbucket.org/kubek2k/springockito</url>
-    <connection>https://bitbucket.org/kubek2k/springockito</connection>
-    <developerConnection>scm:hg:https://bitbucket.org/kubek2k/springockito</developerConnection>
-  </scm>
+    <description>Simple tool to create mocks in Spring environment</description>
+    <name>Springockito</name>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-    </dependency>
+    <parent>
+        <groupId>org.kubek2k</groupId>
+        <artifactId>springockito-parent</artifactId>
+        <version>1.0.3-SNAPSHOT</version>
+    </parent>
 
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-expression</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-beans</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-context</artifactId>
-    </dependency>
+    <scm>
+        <url>https://bitbucket.org/kubek2k/springockito</url>
+        <connection>https://bitbucket.org/kubek2k/springockito</connection>
+        <developerConnection>scm:hg:https://bitbucket.org/kubek2k/springockito</developerConnection>
+    </scm>
 
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>${spring.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.testng</groupId>
-      <artifactId>testng</artifactId>
-    </dependency>
-  </dependencies>
+    <dependencies>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 </project>

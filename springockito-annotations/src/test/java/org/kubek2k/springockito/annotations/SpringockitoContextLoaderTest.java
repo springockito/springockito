@@ -3,9 +3,8 @@ package org.kubek2k.springockito.annotations;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
 
-import org.junit.Test;
-import org.mockito.Spy;
 import org.springframework.context.ApplicationContext;
+import org.testng.annotations.Test;
 
 public class SpringockitoContextLoaderTest {
     @Test
@@ -43,9 +42,11 @@ public class SpringockitoContextLoaderTest {
     }
 
     public static class SomeTestClass {
+        @SuppressWarnings("unused")
         @ReplaceWithMock
         private OuterBean outerBean1;
         
+        @SuppressWarnings("unused")
         @WrapWithSpy
         private OuterBean outerBean;
     }

@@ -2,15 +2,15 @@ package org.kubek2k.springockito.annotations;
 
 import static org.mockito.Mockito.verify;
 
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.Test;
 
 @ContextConfiguration(loader = SpringockitoContextLoader.class,
 locations = "classpath:/mockContext.xml")
-public class SpringockitoAnnotationsMocksIntegrationTest extends AbstractJUnit4SpringContextTests {
+public class SpringockitoAnnotationsMocksIntegrationTest extends AbstractTestNGSpringContextTests {
     
     @ReplaceWithMock
     @Autowired

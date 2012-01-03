@@ -3,8 +3,6 @@ package org.kubek2k.mockito.spring;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
-import java.util.Date;
-
 import org.mockito.cglib.proxy.Factory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

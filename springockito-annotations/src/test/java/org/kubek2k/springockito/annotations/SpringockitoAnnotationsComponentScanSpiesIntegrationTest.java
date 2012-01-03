@@ -1,17 +1,17 @@
 package org.kubek2k.springockito.annotations;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.mockito.Mockito.verify;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
-
-import static org.mockito.Mockito.verify;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 @ContextConfiguration(loader = SpringockitoContextLoader.class,
 locations = "classpath:/componentScanMockContext.xml")
-public class SpringockitoAnnotationsComponentScanSpiesIntegrationTest extends AbstractJUnit4SpringContextTests {
+public class SpringockitoAnnotationsComponentScanSpiesIntegrationTest extends AbstractTestNGSpringContextTests {
     
     @WrapWithSpy
     @Autowired
