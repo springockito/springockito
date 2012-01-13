@@ -6,7 +6,8 @@
     elementFormDefault="qualified"
     attributeFormDefault="unqualified">
 
-   <xsd:import namespace="http://www.springframework.org/schema/beans"/>
+   <xsd:import namespace="http://www.springframework.org/schema/beans"
+        schemaLocation="http://www.springframework.org/schema/beans/spring-beans.xsd"/>
 
    <xsd:element name="mock">
       <xsd:complexType>

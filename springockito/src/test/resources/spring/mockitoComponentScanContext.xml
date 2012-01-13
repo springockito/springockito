@@ -4,7 +4,7 @@
     xmlns:mockito="http://www.mockito.org/spring/mockito"
     xmlns:context="http://www.springframework.org/schema/context"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-    http://www.mockito.org/spring/mockito http://www.mockito.org/spring/mockito.xsd
+    http://www.mockito.org/spring/mockito https://bitbucket.org/kubek2k/springockito/raw/tip/springockito/src/main/resources/spring/mockito.xsd
     http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
     <context:component-scan base-package="org.kubek2k.mockito.spring.testbeans"/>
