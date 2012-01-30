@@ -16,4 +16,8 @@ public class BeanAutowiringMock {
     public InterfaceToBeMocked getInterfaceToBeMocked() {
         return interfaceToBeMocked;
     }
+    
+    public Integer getValue() {
+        return interfaceToBeMocked.getValue();
+    }
 }
