@@ -1,4 +1,4 @@
-package org.kubek2k.mockito.spring;
+  package org.kubek2k.mockito.spring;
 
 import org.mockito.Mockito;
 import org.springframework.beans.BeansException;
