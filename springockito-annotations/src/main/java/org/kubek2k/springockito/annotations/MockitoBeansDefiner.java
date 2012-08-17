@@ -1,6 +1,6 @@
 package org.kubek2k.springockito.annotations;
 
-import org.kubek2k.mockito.spring.factory.MockFactoryBean;
+import org.kubek2k.springockito.annotations.factory.MockFactoryBean;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 

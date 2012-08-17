@@ -3,4 +3,3 @@ syntax regexp
 .*\.project
 .*\.classpath
 .*\.settings
-.*\.iml
