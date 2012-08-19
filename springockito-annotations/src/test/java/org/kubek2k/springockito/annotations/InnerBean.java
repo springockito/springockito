@@ -8,4 +8,8 @@ public class InnerBean {
         return VALUE_RETURNED_BY_INNER;
     }
 
+    public Runnable methodReturningInteger() {
+        return null;
+    }
+
 }

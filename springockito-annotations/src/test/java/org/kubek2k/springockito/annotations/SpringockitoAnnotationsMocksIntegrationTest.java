@@ -12,13 +12,13 @@ import org.testng.annotations.Test;
 locations = "classpath:/mockContext.xml")
 public class SpringockitoAnnotationsMocksIntegrationTest extends AbstractTestNGSpringContextTests {
     
-    @ReplaceWithMock
+    @ReplaceWithMock()
     @Autowired
     private InnerBean innerBean;
     
     @Autowired
     private OuterBean outerBean;
-    
+
     @Test
     @DirtiesContext
     public void shouldUseMockInsteadOfOriginalBean() {

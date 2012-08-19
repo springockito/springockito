@@ -10,7 +10,8 @@ import org.springframework.test.context.support.GenericXmlContextLoader;
 
 public class SpringockitoContextLoader extends GenericXmlContextLoader {
 
-    private Map<String, Class<?>> mockedBeans = new HashMap<String, Class<?>>();
+    private Map<String, DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock>> mockedBeans
+            = new HashMap<String, DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock>>();
     private Set<String> spiedBeans;
 
     private DesiredMockitoBeansFinder mockedBeansFinder = new DesiredMockitoBeansFinder();
@@ -25,10 +26,17 @@ public class SpringockitoContextLoader extends GenericXmlContextLoader {
         registerSpies(context, spiedBeans);
     }
 
-    private void registerMocks(GenericApplicationContext context, Map<String, Class<?>> mockedBeans) {
-        for (Map.Entry<String, Class<?>> beanEntry : this.mockedBeans.entrySet()) {
+    private void registerMocks(GenericApplicationContext context,
+                               Map<String, DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock>> mockedBeans) {
+        for (Map.Entry<String, DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock>> beanEntry : this.mockedBeans.entrySet()) {
+            DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock> mockProperties = beanEntry.getValue();
+            ReplaceWithMock replaceWithMockAnnotation = mockProperties.getAnnotationValues();
             context.registerBeanDefinition(beanEntry.getKey(),
-                    mockitoBeansDefiner.createMockFactoryBeanDefinition(beanEntry.getValue()));
+                    mockitoBeansDefiner.createMockFactoryBeanDefinition(mockProperties.getMockClass(),
+                            replaceWithMockAnnotation.extraInterfaces(),
+                            replaceWithMockAnnotation.name(),
+                            replaceWithMockAnnotation.defaultAnswer()
+                    ));
         }
     }
 
@@ -56,17 +64,5 @@ public class SpringockitoContextLoader extends GenericXmlContextLoader {
         this.spiedBeans = mockedBeansFinder.findSpiedBeans(clazz);
 
         return super.modifyLocations(clazz, locations);
-    }
-
-    void setMockedBeansFinder(DesiredMockitoBeansFinder mockedBeansFinder) {
-        this.mockedBeansFinder = mockedBeansFinder;
-    }
-
-    void setMockitoBeansDefiner(MockitoBeansDefiner mockitoBeansDefiner) {
-        this.mockitoBeansDefiner = mockitoBeansDefiner;
-    }
-    
-    void setMockitoSpiesDefiner(MockitoSpiesDefiner mockitoSpiesDefiner) {
-        this.mockitoSpiesDefiner = mockitoSpiesDefiner;
     }
 }
