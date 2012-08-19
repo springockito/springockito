@@ -38,7 +38,11 @@ public class MockFactoryBean<T> implements FactoryBean<T> {
     }
 
     private T createInstance() {
-        MockSettings mockSettings = new MockSettingsImpl().extraInterfaces(extraInterfaces);
+        MockSettings mockSettings = new MockSettingsImpl();
+
+        if (extraInterfaces.length > 0) {
+            mockSettings = mockSettings.extraInterfaces(extraInterfaces);
+        }
 
         if (defaultAnswer != null) {
             mockSettings = mockSettings.defaultAnswer(defaultAnswer.get());
