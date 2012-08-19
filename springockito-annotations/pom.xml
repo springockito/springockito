@@ -4,13 +4,13 @@
 
     <groupId>org.kubek2k</groupId>
     <artifactId>springockito-annotations</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.3</version>
     <name>Springockito annotations</name>
 
     <parent>
         <groupId>org.kubek2k</groupId>
         <artifactId>springockito-parent</artifactId>
-        <version>1.0.4-SNAPSHOT</version>
+        <version>1.0.4</version>
     </parent>
 
     <scm>
