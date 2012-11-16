@@ -4,3 +4,4 @@ syntax regexp
 .*\.classpath
 .*\.settings
 .*\.iml
+.idea.*
