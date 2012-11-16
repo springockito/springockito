@@ -10,7 +10,7 @@
     <parent>
         <groupId>org.kubek2k</groupId>
         <artifactId>springockito-parent</artifactId>
-        <version>1.0.4</version>
+        <version>1.0.5-SNAPSHOT</version>
     </parent>
 
     <scm>
@@ -35,6 +35,12 @@
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>2.2.2</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
