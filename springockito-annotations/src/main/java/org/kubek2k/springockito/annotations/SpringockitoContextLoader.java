@@ -1,10 +1,10 @@
 package org.kubek2k.springockito.annotations;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
+import org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor;
 import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.test.context.support.GenericXmlContextLoader;
 
@@ -22,6 +22,11 @@ public class SpringockitoContextLoader extends GenericXmlContextLoader {
     @Override
     protected void customizeContext(GenericApplicationContext context) {
         super.customizeContext(context);
+
+        context.registerBeanDefinition("springockitoAutowiredBeanPostProcessor", BeanDefinitionBuilder.genericBeanDefinition(AutowiredAnnotationBeanPostProcessor.class)
+                .addPropertyValue("autowiredAnnotationTypes", new HashSet<Class>(Arrays.asList(ReplaceWithMock.class, WrapWithSpy.class)))
+                .getBeanDefinition());
+
         registerMocks(context, mockedBeans);
         registerSpies(context, spiedBeans);
     }
