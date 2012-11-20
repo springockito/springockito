@@ -1,18 +1,19 @@
 package org.kubek2k.springockito.annotations;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
-
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.test.context.support.GenericXmlContextLoader;
 
+import java.util.*;
+
 public class SpringockitoContextLoader extends GenericXmlContextLoader {
 
+    /**
+     * Have to be sorted since we want a nice caching of customized application contexts
+     */
     private Map<String, DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock>> mockedBeans
-            = new HashMap<String, DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock>>();
-    private Set<String> spiedBeans;
+            = new TreeMap<String, DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock>>();
+    private Set<String> spiedBeans = new TreeSet<String>();
 
     private DesiredMockitoBeansFinder mockedBeansFinder = new DesiredMockitoBeansFinder();
 
@@ -30,7 +31,7 @@ public class SpringockitoContextLoader extends GenericXmlContextLoader {
                                Map<String, DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock>> mockedBeans) {
         for (Map.Entry<String, DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock>> beanEntry : this.mockedBeans.entrySet()) {
             DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock> mockProperties = beanEntry.getValue();
-            ReplaceWithMock replaceWithMockAnnotation = mockProperties.getAnnotationValues();
+            ReplaceWithMock replaceWithMockAnnotation = mockProperties.getAnnotationInstance();
             context.registerBeanDefinition(beanEntry.getKey(),
                     mockitoBeansDefiner.createMockFactoryBeanDefinition(mockProperties.getMockClass(),
                             replaceWithMockAnnotation.extraInterfaces(),
@@ -49,20 +50,57 @@ public class SpringockitoContextLoader extends GenericXmlContextLoader {
         }
     }
 
+    private void defineMocksAndSpies(Class<?> clazz) {
+        this.mockedBeans.putAll(mockedBeansFinder.findMockedBeans(clazz));
+        this.spiedBeans.addAll(mockedBeansFinder.findSpiedBeans(clazz));
+    }
+
+    private List<String> generateLocationForMocksAndSpies() {
+        List<String> result = new ArrayList<String>(mockedBeans.size() + spiedBeans.size());
+
+        for (Map.Entry<String, DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock>> mockDefinitionEntry : mockedBeans.entrySet()) {
+            result.add("classpath*:/mock-" + mockDefinitionEntry.getKey() + "=" + mockDefinitionEntry.getValue().getClasspathRepresentation());
+        }
+
+        for (String spiedBean : spiedBeans) {
+            result.add("classpath*:/spy-" + spiedBean);
+        }
+
+        return result;
+    }
+
+    // I know I could use commons or sth but I don't want to introduce more deps than are actually really really needed
+    private <T> List<T> merge(List<T> list1, List<T> list2) {
+        List<T> result = new ArrayList<T>(list1.size() + list2.size());
+
+        result.addAll(list1);
+        result.addAll(list2);
+
+        return result;
+    }
+
+    private String[] addFakeLocationsOfBeansAndSpies(String[] locations) {
+        List<String> locationOfMocksAndSpies = generateLocationForMocksAndSpies();
+        return merge(Arrays.asList(locations), locationOfMocksAndSpies)
+                .toArray(new String[locations.length + locationOfMocksAndSpies.size()]);
+    }
+
     @Override
     protected String[] generateDefaultLocations(Class<?> clazz) {
-        this.mockedBeans = mockedBeansFinder.findMockedBeans(clazz);
-        this.spiedBeans = mockedBeansFinder.findSpiedBeans(clazz);
+        String[] resultingLocations = super.generateDefaultLocations(clazz);
 
-        return super.generateDefaultLocations(clazz);
+        defineMocksAndSpies(clazz);
+
+        return addFakeLocationsOfBeansAndSpies(resultingLocations);
 
     }
 
     @Override
-    protected String[] modifyLocations(Class<?> clazz, String... locations) {
-        this.mockedBeans = mockedBeansFinder.findMockedBeans(clazz);
-        this.spiedBeans = mockedBeansFinder.findSpiedBeans(clazz);
+    protected String[] modifyLocations(Class<?> clazz, String... passedLocations) {
+        String[] resultingLocations = super.modifyLocations(clazz, passedLocations);
 
-        return super.modifyLocations(clazz, locations);
+        defineMocksAndSpies(clazz);
+
+        return addFakeLocationsOfBeansAndSpies(resultingLocations);
     }
 }

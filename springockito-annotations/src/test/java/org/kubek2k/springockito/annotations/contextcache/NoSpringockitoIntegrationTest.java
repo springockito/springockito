@@ -7,7 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
-@ContextConfiguration(locations = "classpath:/componentScanMockContext.xml")
+@ContextConfiguration(locations = {"classpath:/componentScanMockContext.xml", "classpath*:mock=org.kubek2k.springockito"})
 public class NoSpringockitoIntegrationTest extends AbstractTestNGSpringContextTests {
 
     @Autowired
