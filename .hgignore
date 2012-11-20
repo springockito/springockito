@@ -1,0 +1,7 @@
+syntax regexp
+.*target/.*
+.*\.project
+.*\.classpath
+.*\.settings
+.*\.iml
+.idea.*
