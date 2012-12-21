@@ -29,7 +29,7 @@ public class SpringockitoContextLoader extends GenericXmlContextLoader {
 
     private void registerMocks(GenericApplicationContext context,
                                Map<String, DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock>> mockedBeans) {
-        for (Map.Entry<String, DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock>> beanEntry : this.mockedBeans.entrySet()) {
+        for (Map.Entry<String, DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock>> beanEntry : mockedBeans.entrySet()) {
             DesiredMockitoBeansFinder.MockProperties<ReplaceWithMock> mockProperties = beanEntry.getValue();
             ReplaceWithMock replaceWithMockAnnotation = mockProperties.getAnnotationInstance();
             context.registerBeanDefinition(beanEntry.getKey(),
@@ -70,7 +70,7 @@ public class SpringockitoContextLoader extends GenericXmlContextLoader {
     }
 
     // I know I could use commons or sth but I don't want to introduce more deps than are actually really really needed
-    private <T> List<T> merge(List<T> list1, List<T> list2) {
+    private <T> List<T> concat(List<T> list1, List<T> list2) {
         List<T> result = new ArrayList<T>(list1.size() + list2.size());
 
         result.addAll(list1);
@@ -81,7 +81,7 @@ public class SpringockitoContextLoader extends GenericXmlContextLoader {
 
     private String[] addFakeLocationsOfBeansAndSpies(String[] locations) {
         List<String> locationOfMocksAndSpies = generateLocationForMocksAndSpies();
-        return merge(Arrays.asList(locations), locationOfMocksAndSpies)
+        return concat(Arrays.asList(locations), locationOfMocksAndSpies)
                 .toArray(new String[locations.length + locationOfMocksAndSpies.size()]);
     }
 
