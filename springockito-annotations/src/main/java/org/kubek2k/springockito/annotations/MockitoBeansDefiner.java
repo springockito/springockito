@@ -7,11 +7,13 @@ import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 
 class MockitoBeansDefiner {
     public AbstractBeanDefinition createMockFactoryBeanDefinition(Class<?> mockClass, Class[] extraInterfaces, String mockName, Answers defaultAnswer) {
-        return BeanDefinitionBuilder.genericBeanDefinition(MockFactoryBean.class.getCanonicalName())
+        AbstractBeanDefinition beanDefinition = BeanDefinitionBuilder.genericBeanDefinition(MockFactoryBean.class.getCanonicalName())
                 .addConstructorArgValue(mockClass)
                 .addConstructorArgValue(extraInterfaces)
                 .addConstructorArgValue(mockName)
                 .addConstructorArgValue(defaultAnswer)
                 .getBeanDefinition();
+        beanDefinition.setPrimary(true);
+        return beanDefinition;
     }
 }
