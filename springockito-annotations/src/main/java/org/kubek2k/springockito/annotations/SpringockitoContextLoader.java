@@ -1,5 +1,8 @@
 package org.kubek2k.springockito.annotations;
 
+import org.kubek2k.springockito.annotations.internal.DesiredMockitoBeansFinder;
+import org.kubek2k.springockito.annotations.internal.MockitoBeansDefiner;
+import org.kubek2k.springockito.annotations.internal.MockitoSpiesDefiner;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.test.context.support.GenericXmlContextLoader;
@@ -79,19 +82,13 @@ public class SpringockitoContextLoader extends GenericXmlContextLoader {
         return result;
     }
 
-    private String[] addFakeLocationsOfBeansAndSpies(String[] locations) {
-        List<String> locationOfMocksAndSpies = generateLocationForMocksAndSpies();
-        return merge(Arrays.asList(locations), locationOfMocksAndSpies)
-                .toArray(new String[locations.length + locationOfMocksAndSpies.size()]);
-    }
-
     @Override
     protected String[] generateDefaultLocations(Class<?> clazz) {
         String[] resultingLocations = super.generateDefaultLocations(clazz);
 
         defineMocksAndSpies(clazz);
 
-        return addFakeLocationsOfBeansAndSpies(resultingLocations);
+        return resultingLocations;
 
     }
 
@@ -101,6 +98,6 @@ public class SpringockitoContextLoader extends GenericXmlContextLoader {
 
         defineMocksAndSpies(clazz);
 
-        return addFakeLocationsOfBeansAndSpies(resultingLocations);
+        return resultingLocations;
     }
 }

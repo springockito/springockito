@@ -10,9 +10,21 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface ReplaceWithMock {
+
     String name() default "";
 
     Answers defaultAnswer() default Answers.RETURNS_DEFAULTS;
 
     Class[] extraInterfaces() default {};
+
+    BeanNameStrategy beanNameStrategy() default BeanNameStrategy.DEFAULT;
+
+    String beanName() default "";
+
+    public enum BeanNameStrategy {
+        DEFAULT,
+        FIELD_NAME,
+        FIELD_TYPE_NAME
+    }
+
 }

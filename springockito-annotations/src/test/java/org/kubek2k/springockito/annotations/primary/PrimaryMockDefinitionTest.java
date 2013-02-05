@@ -1,9 +1,9 @@
 package org.kubek2k.springockito.annotations.primary;
 
-import org.kubek2k.springockito.annotations.InnerBean;
-import org.kubek2k.springockito.annotations.OuterBean;
 import org.kubek2k.springockito.annotations.ReplaceWithMock;
 import org.kubek2k.springockito.annotations.SpringockitoContextLoader;
+import org.kubek2k.springockito.annotations.it.beans.InnerBean;
+import org.kubek2k.springockito.annotations.it.beans.OuterBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;

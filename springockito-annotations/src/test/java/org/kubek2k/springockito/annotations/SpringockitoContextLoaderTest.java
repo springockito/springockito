@@ -1,10 +1,11 @@
 package org.kubek2k.springockito.annotations;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-
+import org.kubek2k.springockito.annotations.it.beans.OuterBean;
 import org.springframework.context.ApplicationContext;
 import org.testng.annotations.Test;
+
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 
 public class SpringockitoContextLoaderTest {
     @Test
@@ -23,7 +24,7 @@ public class SpringockitoContextLoaderTest {
         verifyNoMoreInteractions(outerBean);
 
     }
-    
+
     @Test
     public void shouldLoadSpyBean() throws Exception {
         // given
@@ -34,9 +35,9 @@ public class SpringockitoContextLoaderTest {
         ApplicationContext context = loader.loadContext("classpath:/mockContext.xml");
 
         // then
-        OuterBean outer =  (OuterBean) context.getBean("outerBean");
+        OuterBean outer = (OuterBean) context.getBean("outerBean");
         outer.doSomething();
-        
+
         // verification that it's a spy
         verify(outer).doSomething();
     }
@@ -45,7 +46,7 @@ public class SpringockitoContextLoaderTest {
         @SuppressWarnings("unused")
         @ReplaceWithMock
         private OuterBean outerBean1;
-        
+
         @SuppressWarnings("unused")
         @WrapWithSpy
         private OuterBean outerBean;

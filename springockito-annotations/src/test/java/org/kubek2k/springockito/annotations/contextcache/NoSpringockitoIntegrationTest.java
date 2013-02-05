@@ -1,7 +1,7 @@
 package org.kubek2k.springockito.annotations.contextcache;
 
 import junit.framework.Assert;
-import org.kubek2k.springockito.annotations.InnerBean;
+import org.kubek2k.springockito.annotations.it.beans.InnerBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
@@ -15,6 +15,6 @@ public class NoSpringockitoIntegrationTest extends AbstractTestNGSpringContextTe
 
     @Test
     public void shouldBeAnActualBean() {
-         Assert.assertEquals(InnerBean.class, innerBean.getClass());
+        Assert.assertEquals(InnerBean.class, innerBean.getClass());
     }
 }
