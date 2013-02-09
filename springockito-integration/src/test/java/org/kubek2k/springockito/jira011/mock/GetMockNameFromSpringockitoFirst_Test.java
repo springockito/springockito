@@ -1,4 +1,4 @@
-package org.kubek2k.springockito.jira011;
+package org.kubek2k.springockito.jira011.mock;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,7 +19,7 @@ import static org.kubek2k.tools.TestUtil.isMock;
 @Jira(number = 11, uri = "/kubek2k/springockito/issue/11/an-ability-to-define-a-name-of-the")
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext
-@ContextConfiguration(loader = SpringockitoContextLoader.class, locations = {"classpath:spring/jira011/context_3.xml"})
+@ContextConfiguration(loader = SpringockitoContextLoader.class, locations = {"classpath:spring/jira011/mock/context_3.xml"})
 public class GetMockNameFromSpringockitoFirst_Test {
 
     @Resource

@@ -8,4 +8,11 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface WrapWithSpy {
+
+    //bean naming
+
+    BeanNameStrategy beanNameStrategy() default BeanNameStrategy.DEFAULT;
+
+    String beanName() default "";
+
 }

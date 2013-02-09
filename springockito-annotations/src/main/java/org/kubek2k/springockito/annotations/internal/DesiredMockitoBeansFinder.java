@@ -83,7 +83,7 @@ public class DesiredMockitoBeansFinder {
         for (Field field : fieldsToScan) {
             Annotation replaceWithMockAnnotation = field.getAnnotation(annotationClass);
             if (replaceWithMockAnnotation != null) {
-                String beanName = field.getName();
+                String beanName = getBeanName(field);
                 mockedBeans.put(beanName, new MockProperties<AnnotationType>((AnnotationType) field.getAnnotation(annotationClass), field.getType(), annotationClasspathRepresentationCreator));
             }
         }

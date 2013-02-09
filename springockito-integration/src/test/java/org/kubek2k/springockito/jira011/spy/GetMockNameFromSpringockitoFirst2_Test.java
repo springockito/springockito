@@ -1,9 +1,9 @@
-package org.kubek2k.springockito.jira011;
+package org.kubek2k.springockito.jira011.spy;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.kubek2k.springockito.annotations.ReplaceWithMock;
 import org.kubek2k.springockito.annotations.SpringockitoContextLoader;
+import org.kubek2k.springockito.annotations.WrapWithSpy;
 import org.kubek2k.tools.Jira;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -14,26 +14,26 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 
 import static org.fest.assertions.Assertions.assertThat;
-import static org.kubek2k.springockito.annotations.ReplaceWithMock.BeanNameStrategy.FIELD_NAME;
+import static org.kubek2k.springockito.annotations.BeanNameStrategy.FIELD_NAME;
 import static org.kubek2k.tools.TestUtil.isMock;
 
 @Jira(number = 11, uri = "/kubek2k/springockito/issue/11/an-ability-to-define-a-name-of-the")
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext
-@ContextConfiguration(loader = SpringockitoContextLoader.class, locations = {"classpath:spring/jira011/context_4.xml"})
-public class GetMockNameFromSpringockitoFirst2 {
+@ContextConfiguration(loader = SpringockitoContextLoader.class, locations = {"classpath:spring/jira011/spy/context_4.xml"})
+public class GetMockNameFromSpringockitoFirst2_Test {
 
     @Resource
     BeanInjectedWith beanInjectedWith;
 
     @Autowired
     @Qualifier("firstBeanUnwantedName")
-    @ReplaceWithMock(beanNameStrategy = FIELD_NAME)
-    private FirstBeanNotInContext firstBean;
+    @WrapWithSpy(beanNameStrategy = FIELD_NAME)
+    private FirstSpiedBean firstBean;
 
     @Resource(name = "secondBeanUnwantedName")
-    @ReplaceWithMock(beanNameStrategy = FIELD_NAME)
-    private SecondBeanNotInContext secondBean;
+    @WrapWithSpy(beanNameStrategy = FIELD_NAME)
+    private SecondSpiedBean secondBean;
 
     @Test
     public void shouldFirstAndSecondBeanBeDifferentAndNotMocks() {
@@ -47,8 +47,8 @@ public class GetMockNameFromSpringockitoFirst2 {
 
     @Test
     public void shouldBeansInjectedIntoBeanBeingInjectedWithBeDifferentAndMocks() {
-        FirstBeanNotInContext injectedFirst = beanInjectedWith.getFirstBeanNotInContext();
-        SecondBeanNotInContext injectedSecond = beanInjectedWith.getSecondBeanNotInContext();
+        FirstSpiedBean injectedFirst = beanInjectedWith.getFirstSpiedBean();
+        SecondSpiedBean injectedSecond = beanInjectedWith.getSecondSpiedBean();
         assertThat(isMock(injectedFirst))
                 .isTrue();
         assertThat(isMock(injectedSecond))
@@ -59,14 +59,14 @@ public class GetMockNameFromSpringockitoFirst2 {
 
     @Test
     public void shouldUseExplicitNameFromReplaceWithMockInsteadOfSpringQualifierValue() {
-        FirstBeanNotInContext injected = beanInjectedWith.getFirstBeanNotInContext();
+        FirstSpiedBean injected = beanInjectedWith.getFirstSpiedBean();
         assertThat(injected)
                 .isNotSameAs(firstBean);
     }
 
     @Test
     public void shouldUseExplicitNameFromReplaceWithMockInsteadOfJavaxResourceName() {
-        SecondBeanNotInContext injected = beanInjectedWith.getSecondBeanNotInContext();
+        SecondSpiedBean injected = beanInjectedWith.getSecondSpiedBean();
         assertThat(injected)
                 .isNotSameAs(secondBean);
     }

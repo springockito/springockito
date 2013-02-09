@@ -1,4 +1,4 @@
-package org.kubek2k.springockito.jira011;
+package org.kubek2k.springockito.jira011.mock;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,47 +14,62 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 
 import static org.fest.assertions.Assertions.assertThat;
+import static org.kubek2k.springockito.annotations.BeanNameStrategy.FIELD_NAME;
 import static org.kubek2k.tools.TestUtil.isMock;
 
 @Jira(number = 11, uri = "/kubek2k/springockito/issue/11/an-ability-to-define-a-name-of-the")
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext
-@ContextConfiguration(loader = SpringockitoContextLoader.class, locations = {"classpath:spring/jira011/context_1.xml"})
-public class MockNamesAfterQualifierOrResource_Test {
+@ContextConfiguration(loader = SpringockitoContextLoader.class, locations = {"classpath:spring/jira011/mock/context_4.xml"})
+public class GetMockNameFromSpringockitoFirst2_Test {
 
     @Resource
     BeanInjectedWith beanInjectedWith;
 
     @Autowired
-    @Qualifier("firstBeanNotInContext")
-    @ReplaceWithMock
+    @Qualifier("firstBeanUnwantedName")
+    @ReplaceWithMock(beanNameStrategy = FIELD_NAME)
     private FirstBeanNotInContext firstBean;
 
-    @Resource(name = "secondBeanNotInContext")
-    @ReplaceWithMock
+    @Resource(name = "secondBeanUnwantedName")
+    @ReplaceWithMock(beanNameStrategy = FIELD_NAME)
     private SecondBeanNotInContext secondBean;
 
     @Test
-    public void shouldCreateMocksWhenNoSuchDefinitionsInSuppliedLocationAndInjectThem() {
+    public void shouldFirstAndSecondBeanBeDifferentAndNotMocks() {
         assertThat(isMock(firstBean))
-                .isTrue();
+                .isFalse();
         assertThat(isMock(secondBean))
-                .isTrue();
+                .isFalse();
         assertThat(firstBean)
                 .isNotSameAs(secondBean);
     }
 
     @Test
-    public void shouldPutBeanInContextWithNameFromSpringQualifierValue() {
-        FirstBeanNotInContext injected = beanInjectedWith.getFirstBeanNotInContext();
-        assertThat(injected)
-                .isSameAs(firstBean);
+    public void shouldBeansInjectedIntoBeanBeingInjectedWithBeDifferentAndMocks() {
+        FirstBeanNotInContext injectedFirst = beanInjectedWith.getFirstBeanNotInContext();
+        SecondBeanNotInContext injectedSecond = beanInjectedWith.getSecondBeanNotInContext();
+        assertThat(isMock(injectedFirst))
+                .isTrue();
+        assertThat(isMock(injectedSecond))
+                .isTrue();
+        assertThat(injectedFirst)
+                .isNotSameAs(injectedSecond);
     }
 
     @Test
-    public void shouldPutBeanInContextWithNameFromJavaxResourceName() {
+    public void shouldUseExplicitNameFromReplaceWithMockInsteadOfSpringQualifierValue() {
+        FirstBeanNotInContext injected = beanInjectedWith.getFirstBeanNotInContext();
+        assertThat(injected)
+                .isNotSameAs(firstBean);
+    }
+
+    @Test
+    public void shouldUseExplicitNameFromReplaceWithMockInsteadOfJavaxResourceName() {
         SecondBeanNotInContext injected = beanInjectedWith.getSecondBeanNotInContext();
         assertThat(injected)
-                .isSameAs(secondBean);
+                .isNotSameAs(secondBean);
     }
+
+
 }

@@ -11,20 +11,18 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface ReplaceWithMock {
 
+    //mock settings
+
     String name() default "";
 
     Answers defaultAnswer() default Answers.RETURNS_DEFAULTS;
 
     Class[] extraInterfaces() default {};
 
+    //bean naming
+
     BeanNameStrategy beanNameStrategy() default BeanNameStrategy.DEFAULT;
 
     String beanName() default "";
-
-    public enum BeanNameStrategy {
-        DEFAULT,
-        FIELD_NAME,
-        FIELD_TYPE_NAME
-    }
 
 }
