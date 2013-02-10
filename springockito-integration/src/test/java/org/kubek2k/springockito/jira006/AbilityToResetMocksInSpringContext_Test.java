@@ -6,7 +6,6 @@ import org.kubek2k.springockito.annotations.ReplaceWithMock;
 import org.kubek2k.springockito.annotations.SpringockitoContextLoader;
 import org.kubek2k.springockito.annotations.experimental.DirtiesMocks;
 import org.kubek2k.springockito.annotations.experimental.DirtiesMocksTestContextListener;
-import org.kubek2k.tools.Jira;
 import org.kubek2k.tools.Ordered;
 import org.kubek2k.tools.OrderedSpringJUnit4ClassRunner;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,7 +20,6 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
-@Jira(number = 6, uri = "/kubek2k/springockito/issue/6/ability-to-reinitialize-resetMock-all-mockito")
 @RunWith(OrderedSpringJUnit4ClassRunner.class)
 @ContextConfiguration(loader = SpringockitoContextLoader.class, locations = {"classpath:spring/jira006/context.xml"})
 @TestExecutionListeners({DependencyInjectionTestExecutionListener.class, DirtiesContextTestExecutionListener.class, DirtiesMocksTestContextListener.class})

@@ -1,4 +1,4 @@
-package org.kubek2k.springockito.annotations.internal;
+package org.kubek2k.springockito.annotations.internal.definer;
 
 import org.kubek2k.springockito.annotations.internal.factory.SpyFactoryBean;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;

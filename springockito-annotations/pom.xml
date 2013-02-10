@@ -5,13 +5,13 @@
 
     <groupId>org.kubek2k</groupId>
     <artifactId>springockito-annotations</artifactId>
-    <version>1.0.7-SNAPSHOT</version>
+    <version>1.0.7</version>
     <name>Springockito annotations</name>
 
     <parent>
         <groupId>org.kubek2k</groupId>
         <artifactId>springockito-parent</artifactId>
-        <version>1.0.6-SNAPSHOT</version>
+        <version>1.0.6</version>
     </parent>
 
     <scm>
@@ -28,6 +28,11 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!--test-->

@@ -1,4 +1,4 @@
-package org.kubek2k.springockito.annotations.internal;
+package org.kubek2k.springockito.annotations.internal.definer;
 
 import org.kubek2k.springockito.annotations.internal.factory.MockFactoryBean;
 import org.mockito.Answers;

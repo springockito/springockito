@@ -1,9 +1,10 @@
 package org.kubek2k.springockito.annotations.internal.factory;
 
+import org.kubek2k.springockito.annotations.internal.ResettableMock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.FactoryBean;
 
-public class SpyFactoryBean<T> implements FactoryBean<T> {
+public class SpyFactoryBean<T> implements FactoryBean<T>, ResettableMock {
 
     private T wrappedInstance;
 
@@ -17,7 +18,6 @@ public class SpyFactoryBean<T> implements FactoryBean<T> {
         if (spyInstance == null) {
             spyInstance = Mockito.spy(wrappedInstance);
         }
-
         return spyInstance;
     }
 
@@ -28,5 +28,15 @@ public class SpyFactoryBean<T> implements FactoryBean<T> {
 
     public boolean isSingleton() {
         return true;
+    }
+
+    public void resetMock() {
+        T object = null;
+        try {
+            object = getObject();
+            Mockito.reset(object);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

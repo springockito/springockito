@@ -1,4 +1,4 @@
-package org.kubek2k.springockito.general.spy;
+package org.kubek2k.springockito.general.basic.spy;
 
 import org.springframework.stereotype.Component;
 

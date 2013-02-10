@@ -9,15 +9,38 @@ import java.lang.reflect.Method;
 import java.util.Map;
 
 public class DirtiesMocksTestContextListener extends AbstractTestExecutionListener {
+
     @Override
     public void afterTestMethod(TestContext testContext) throws Exception {
         Method testMethod = testContext.getTestMethod();
-        if (testMethod.isAnnotationPresent(DirtiesMocks.class)) {
-            ApplicationContext applicationContext = testContext.getApplicationContext();
-            Map<String, ResettableMock> beansOfType = applicationContext.getBeansOfType(ResettableMock.class);
-            for (ResettableMock resettableMock : beansOfType.values()) {
-                resettableMock.resetMock();
-            }
+        Class<?> testClass = testContext.getTestClass();
+        if (testMethod.isAnnotationPresent(DirtiesMocks.class) || afterEveryMethodModeSet(testClass)) {
+            resetMocks(testContext);
+        }
+    }
+
+    private boolean afterEveryMethodModeSet(Class<?> testClass) {
+        return testClass.isAnnotationPresent(DirtiesMocks.class)
+                && testClass.getAnnotation(DirtiesMocks.class).classMode() == DirtiesMocks.ClassMode.AFTER_EACH_TEST_METHOD;
+    }
+
+    @Override
+    public void afterTestClass(TestContext testContext) throws Exception {
+        Class<?> testClass = testContext.getTestClass();
+        if (afterClassModeSet(testClass)) {
+            resetMocks(testContext);
+        }
+    }
+
+    private boolean afterClassModeSet(Class<?> testClass) {
+        return testClass.isAnnotationPresent(DirtiesMocks.class) && testClass.getAnnotation(DirtiesMocks.class).classMode() == DirtiesMocks.ClassMode.AFTER_CLASS;
+    }
+
+    private void resetMocks(TestContext testContext) {
+        ApplicationContext applicationContext = testContext.getApplicationContext();
+        Map<String, ResettableMock> beansOfType = applicationContext.getBeansOfType(ResettableMock.class);
+        for (ResettableMock resettableMock : beansOfType.values()) {
+            resettableMock.resetMock();
         }
     }
 }

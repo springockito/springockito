@@ -2,8 +2,9 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-    <bean id="beanToBeSpiedAndStubbed" class="org.kubek2k.springockito.general.spy.BeanToBeSpiedOrMockedAndStubbed"/>
+    <bean id="beanToBeSpiedAndStubbed"
+          class="org.kubek2k.springockito.general.basic.spy.BeanToBeSpiedOrMockedAndStubbed"/>
 
-    <bean id="beanToBeInjectedWithSpy" class="org.kubek2k.springockito.general.spy.BeanToBeInjectedWithSpy"/>
+    <bean id="beanToBeInjectedWithSpy" class="org.kubek2k.springockito.general.basic.spy.BeanToBeInjectedWithSpy"/>
 
 </beans>
