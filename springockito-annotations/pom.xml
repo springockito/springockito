@@ -4,7 +4,7 @@
 
     <groupId>org.kubek2k</groupId>
     <artifactId>springockito-annotations</artifactId>
-    <version>1.0.8-SNAPSHOT</version>
+    <version>1.0.8</version>
     <name>Springockito annotations</name>
 
     <parent>
