@@ -17,7 +17,7 @@ import static org.kubek2k.tools.TestUtil.isMock;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DirtiesContext
-@ContextConfiguration(loader = SpringockitoContextLoader.class, locations = {"classpath:spring/jira011/spy/context_3.xml"})
+@ContextConfiguration(loader = SpringockitoContextLoader.class, locations = {"classpath:spring/jira011/spy/context_6.xml"})
 public class GetMockNameFromSpringockitoFirst_Test {
 
     @Resource

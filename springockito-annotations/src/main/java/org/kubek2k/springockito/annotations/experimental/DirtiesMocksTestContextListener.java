@@ -1,6 +1,6 @@
 package org.kubek2k.springockito.annotations.experimental;
 
-import org.kubek2k.springockito.annotations.internal.ResettableMock;
+import org.kubek2k.springockito.core.internal.ResettableSpringockito;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.support.AbstractTestExecutionListener;
@@ -38,9 +38,9 @@ public class DirtiesMocksTestContextListener extends AbstractTestExecutionListen
 
     private void resetMocks(TestContext testContext) {
         ApplicationContext applicationContext = testContext.getApplicationContext();
-        Map<String, ResettableMock> beansOfType = applicationContext.getBeansOfType(ResettableMock.class);
-        for (ResettableMock resettableMock : beansOfType.values()) {
-            resettableMock.resetMock();
+        Map<String, ResettableSpringockito> beansOfType = applicationContext.getBeansOfType(ResettableSpringockito.class);
+        for (ResettableSpringockito resettableSpringockito : beansOfType.values()) {
+            resettableSpringockito.reset();
         }
     }
 }

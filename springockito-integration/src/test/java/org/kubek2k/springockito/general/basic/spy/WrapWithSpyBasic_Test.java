@@ -14,7 +14,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(loader = SpringockitoContextLoader.class, locations = {"classpath:/spring/general/spy/context.xml"})
+@ContextConfiguration(loader = SpringockitoContextLoader.class, locations = {"classpath:/spring/general/basic/spy/context.xml"})
 public class WrapWithSpyBasic_Test {
 
     @WrapWithSpy

@@ -10,7 +10,4 @@
     <bean name="firstSpiedBeanArbitraryName" class="org.kubek2k.springockito.jira011.spy.FirstSpiedBean"/>
     <bean name="secondSpiedBeanArbitraryName" class="org.kubek2k.springockito.jira011.spy.SecondSpiedBean"/>
 
-    <!--TODO: check why these are here, and make their purpose more explicit-->
-    <bean name="firstBeanUnwantedName" class="org.kubek2k.springockito.jira011.spy.FirstSpiedBean"/>
-    <bean name="secondBeanUnwantedName" class="org.kubek2k.springockito.jira011.spy.SecondSpiedBean"/>
 </beans>
