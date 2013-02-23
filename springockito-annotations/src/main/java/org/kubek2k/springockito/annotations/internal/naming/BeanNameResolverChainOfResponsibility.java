@@ -9,11 +9,9 @@ import java.util.List;
 
 public class BeanNameResolverChainOfResponsibility implements BeanNameResolver {
 
-    List<AbstractBeanNameResolver> resolversChain;
-    AbstractBeanNameResolver defaultResolver;
+    private List<AbstractBeanNameResolver> resolversChain;
 
     public BeanNameResolverChainOfResponsibility() {
-        this.defaultResolver = new ExplicitBeanNameStrategyBeanNameResolver();
         this.resolversChain = new ArrayList<AbstractBeanNameResolver>();
         Collections.addAll(resolversChain,
                 new ExplicitBeanNameNameResolver(),

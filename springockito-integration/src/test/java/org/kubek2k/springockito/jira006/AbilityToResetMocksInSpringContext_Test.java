@@ -55,7 +55,7 @@ public class AbilityToResetMocksInSpringContext_Test {
     @Test
     public void shouldOperateOnResetMockAndNotDirtyMocks() {
         //given
-        //firstBean was resetMock
+        //firstBean was reset
 
         //when
         String returnedString = firstBean.returnString("ala123");
@@ -88,7 +88,7 @@ public class AbilityToResetMocksInSpringContext_Test {
     @Test
     public void shouldOperateOnNotResetMockAndNotDirtyMocks() {
         //given
-        //secondBean was not resetMock
+        //secondBean was not reset
 
         //when
         String returnedString = secondBean.returnString("ala123");
