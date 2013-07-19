@@ -15,6 +15,8 @@ public class MockitoMockBeanDefinitionParser extends AbstractSingleBeanDefinitio
     @Override
     protected void doParse(Element element, BeanDefinitionBuilder bean) {
         bean.addConstructorArgValue(element.getAttribute("class"));
+        bean.addConstructorArgValue(element.getAttribute("id"));
+        bean.addConstructorArgValue(element.getAttribute("useStaticMap"));
     }
 
     @Override
