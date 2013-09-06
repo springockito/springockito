@@ -14,10 +14,10 @@ public abstract class AbstractBeanNameResolver implements BeanNameResolver {
 
     public boolean canGetBeanName(Field field) {
         String beanName = resolveBeanName(field);
-        return isBlank(beanName);
+        return isNotBlank(beanName);
     }
 
-    private boolean isBlank(String beanName) {
-        return beanName != null && !beanName.isEmpty();
+    private boolean isNotBlank(String beanName) {
+        return beanName != null && beanName.length() > 0;
     }
 }
