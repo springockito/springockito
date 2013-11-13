@@ -42,16 +42,38 @@ public class SpringockitoContextLoaderTest {
         verify(outer).doSomething();
     }
 
-    public static class SomeTestClass {
-        @SuppressWarnings("unused")
-        @ReplaceWithMock
-        private OuterBean outerBean1;
+    @Test
+    public void shouldLoadMockBeanFormAbstractTestClass() throws Exception {
+        // given
+        SpringockitoContextLoader loader = new SpringockitoContextLoader();
 
+        // when
+        loader.processLocations(SomeTestClass.class);
+        ApplicationContext context = loader.loadContext("classpath:/mockContext.xml");
+
+        // then
+        OuterBean outerBean = (OuterBean) context.getBean("outerBean2");
+
+        // verification that it's a mock
+        verifyNoMoreInteractions(outerBean);
+
+    }
+
+    public static class SomeTestClass extends SomeAbstractTestClass {
         @SuppressWarnings("unused")
         @WrapWithSpy
         private OuterBean outerBean;
+
+        @SuppressWarnings("unused")
+        @ReplaceWithMock
+        private OuterBean outerBean1;
     }
 
+    public static class SomeAbstractTestClass {
+        @SuppressWarnings("unused")
+        @ReplaceWithMock
+        protected OuterBean outerBean2;
+    }
 
     public static interface X {
         public int hello();
