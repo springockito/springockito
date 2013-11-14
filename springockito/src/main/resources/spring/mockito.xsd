@@ -14,6 +14,7 @@
          <xsd:complexContent>
             <xsd:extension base="beans:identifiedType">
                <xsd:attribute name="class" type="xsd:string" use="required"/>
+               <xsd:attribute name="useStaticMap" type="xsd:boolean" default="false" />
             </xsd:extension>
          </xsd:complexContent>
       </xsd:complexType>
