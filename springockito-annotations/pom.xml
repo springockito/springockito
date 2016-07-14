@@ -16,7 +16,7 @@
     <scm>
         <url>https://github.com/olivervbk/springockito</url>
         <connection>https://github.com/olivervbk/springockito</connection>
-        <developerConnection>scm:hg:https://github.com/olivervbk/springockito</developerConnection>
+        <developerConnection>scm:git:https://github.com/olivervbk/springockito</developerConnection>
     </scm>
 
     <dependencies>
