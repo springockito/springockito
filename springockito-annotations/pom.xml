@@ -14,9 +14,9 @@
     </parent>
 
     <scm>
-        <url>https://bitbucket.org/kubek2k/springockito</url>
-        <connection>https://bitbucket.org/kubek2k/springockito</connection>
-        <developerConnection>scm:hg:https://bitbucket.org/kubek2k/springockito</developerConnection>
+        <url>https://github.com/olivervbk/springockito</url>
+        <connection>https://github.com/olivervbk/springockito</connection>
+        <developerConnection>scm:hg:https://github.com/olivervbk/springockito</developerConnection>
     </scm>
 
     <dependencies>
