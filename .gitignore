@@ -1,7 +1,7 @@
 syntax regexp
-.*target/.*
-.*\.project
-.*\.classpath
-.*\.settings
-.*\.iml
-.idea.*
+*/target/**
+*.project
+*.classpath
+**/.settings/**
+*.iml
+*.idea/**
