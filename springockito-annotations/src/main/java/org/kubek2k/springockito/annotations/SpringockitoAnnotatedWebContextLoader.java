@@ -6,11 +6,11 @@ import org.springframework.test.context.web.AnnotationConfigWebContextLoader;
 import org.springframework.test.context.web.WebMergedContextConfiguration;
 import org.springframework.web.context.support.GenericWebApplicationContext;
 
-public class SpringockitoAnnotatedContextLoader extends AnnotationConfigWebContextLoader{
+public class SpringockitoAnnotatedWebContextLoader
+	extends AnnotationConfigWebContextLoader
+{
 
-    private Loader loader = new Loader();
-
-    @Override
+	@Override
 	protected void customizeContext(
 		final GenericWebApplicationContext context,
 		final WebMergedContextConfiguration webMergedConfig )
@@ -19,16 +19,20 @@ public class SpringockitoAnnotatedContextLoader extends AnnotationConfigWebConte
 		this.loader.registerMocksAndSpies( context );
 	}
 
-    @Override
-    protected Class<?>[] detectDefaultConfigurationClasses(Class<?> declaringClass) {
-        Class<?>[] clazz = super.detectDefaultConfigurationClasses(declaringClass);
-        loader.defineMocksAndSpies(declaringClass);
-        return clazz;
-    }
+	@Override
+	protected Class< ? >[] detectDefaultConfigurationClasses( final Class< ? > declaringClass )
+	{
+		final Class< ? >[] clazz = super.detectDefaultConfigurationClasses( declaringClass );
+		this.loader.defineMocksAndSpies( declaringClass );
+		return clazz;
+	}
 
-    @Override
-    public void processContextConfiguration(ContextConfigurationAttributes configAttributes) {
-        super.processContextConfiguration(configAttributes);
-        loader.defineMocksAndSpies(configAttributes.getDeclaringClass());
-    }
+	@Override
+	public void processContextConfiguration( final ContextConfigurationAttributes configAttributes )
+	{
+		super.processContextConfiguration( configAttributes );
+		this.loader.defineMocksAndSpies( configAttributes.getDeclaringClass() );
+	}
+
+	private Loader loader = new Loader();
 }
