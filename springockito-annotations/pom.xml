@@ -4,25 +4,29 @@
 
     <groupId>org.kubek2k</groupId>
     <artifactId>springockito-annotations</artifactId>
-    <version>1.0.10-SNAPSHOT</version>
+    <version>1.0.10-olivervbk</version>
     <name>Springockito annotations</name>
 
     <parent>
         <groupId>org.kubek2k</groupId>
         <artifactId>springockito-parent</artifactId>
-        <version>1.0.7</version>
+        <version>1.0.8-SNAPSHOT</version>
     </parent>
 
     <scm>
-        <url>https://bitbucket.org/kubek2k/springockito</url>
-        <connection>https://bitbucket.org/kubek2k/springockito</connection>
-        <developerConnection>scm:hg:https://bitbucket.org/kubek2k/springockito</developerConnection>
+        <url>https://github.com/olivervbk/springockito</url>
+        <connection>https://github.com/olivervbk/springockito</connection>
+        <developerConnection>scm:git:https://github.com/olivervbk/springockito</developerConnection>
     </scm>
 
     <dependencies>
         <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>

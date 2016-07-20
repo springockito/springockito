@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>3.2.1.RELEASE</spring.version>
 
-        <springockito-annotations.version>1.0.9-SNAPSHOT</springockito-annotations.version>
+        <springockito-annotations.version>1.0.10-SNAPSHOT</springockito-annotations.version>
     </properties>
 
     <dependencies>
