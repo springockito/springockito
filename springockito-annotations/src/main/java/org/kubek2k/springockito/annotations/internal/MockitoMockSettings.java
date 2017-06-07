@@ -1,5 +1,7 @@
 package org.kubek2k.springockito.annotations.internal;
 
+import java.lang.reflect.Method;
+
 import org.mockito.Answers;
 import org.mockito.MockSettings;
 import org.mockito.internal.creation.MockSettingsImpl;
@@ -10,6 +12,7 @@ public class MockitoMockSettings {
     private Class<?>[] extraInterfaces;
     private String mockName;
     private Answers defaultAnswer;
+    private Method mockBehavior;
 
     public MockSettings getMockSettings() {
         return createMockSettings();
@@ -47,5 +50,14 @@ public class MockitoMockSettings {
     public MockitoMockSettings withDefaultAnswer(Answers defaultAnswer) {
         this.defaultAnswer = defaultAnswer;
         return this;
+    }
+
+    public MockitoMockSettings withMockBehavior(Method mockBehavior) {
+        this.mockBehavior = mockBehavior;
+        return this;
+    }
+
+    public Method getMockBehavior() {
+        return mockBehavior;
     }
 }

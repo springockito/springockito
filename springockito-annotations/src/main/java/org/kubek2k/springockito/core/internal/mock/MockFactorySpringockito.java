@@ -1,5 +1,7 @@
 package org.kubek2k.springockito.core.internal.mock;
 
+import java.lang.reflect.Method;
+
 import org.kubek2k.springockito.annotations.internal.MockitoMockSettings;
 import org.kubek2k.springockito.core.internal.ResettableSpringockito;
 import org.mockito.MockSettings;
@@ -24,6 +26,10 @@ public class MockFactorySpringockito<T> implements FactoryBean<T>, ResettableSpr
     public T getObject() throws Exception {
         if (instance == null) {
             instance = Mockito.mock(mockClass, getMockSettings());
+            Method method = mockitoMockSettings.getMockBehavior();
+            if (method != null) {
+                method.invoke(null, instance);
+            }
         }
         return instance;
     }

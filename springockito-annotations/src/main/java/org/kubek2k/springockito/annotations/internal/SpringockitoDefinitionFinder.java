@@ -1,16 +1,20 @@
 package org.kubek2k.springockito.annotations.internal;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 import org.kubek2k.springockito.annotations.ReplaceWithMock;
+import org.kubek2k.springockito.annotations.Stub;
 import org.kubek2k.springockito.annotations.WrapWithSpy;
 import org.kubek2k.springockito.annotations.internal.definitions.MockDefinition;
 import org.kubek2k.springockito.annotations.internal.definitions.SpringockitoDefinition;
 import org.kubek2k.springockito.annotations.internal.definitions.SpyDefinition;
 import org.kubek2k.springockito.annotations.internal.naming.BeanNameResolver;
 import org.kubek2k.springockito.annotations.internal.naming.BeanNameResolverChainOfResponsibility;
-
-import java.lang.reflect.Field;
-import java.util.HashSet;
-import java.util.Set;
 
 public class SpringockitoDefinitionFinder {
 
@@ -31,10 +35,19 @@ public class SpringockitoDefinitionFinder {
     private Set<SpringockitoDefinition> findDefinitions(Class<?> currentClass) {
 
         Set<SpringockitoDefinition> definitions = new HashSet<SpringockitoDefinition>();
+        
+        Map<String, Method> mockBehaviorMap = new HashMap<String, Method>();
+        for (Method method : currentClass.getMethods()) {
+            if (method.isAnnotationPresent(Stub.class)) {
+                String mockBeanName = method.getAnnotation(Stub.class).value();
+                mockBehaviorMap.put(mockBeanName, method);
+            }
+        }
 
         for (Field field : currentClass.getDeclaredFields()) {
             if (field.isAnnotationPresent(ReplaceWithMock.class)) {
-                definitions.add(newMockDefinition(field));
+                Method method = mockBehaviorMap.get(resolveBeanName(field));
+                definitions.add(newMockDefinition(field, method));
             } else if (field.isAnnotationPresent(WrapWithSpy.class)) {
                 definitions.add(newSpyDefinition(field));
             }
@@ -48,11 +61,12 @@ public class SpringockitoDefinitionFinder {
                 .withTargetBeanName(resolveBeanName(field));
     }
 
-    private MockDefinition newMockDefinition(Field field) {
+    private MockDefinition newMockDefinition(Field field, Method method) {
         return new MockDefinition()
                 .withAnnotationInstance(field.getAnnotation(ReplaceWithMock.class))
                 .withMockClass(field.getType())
-                .withTargetBeanName(resolveBeanName(field));
+                .withTargetBeanName(resolveBeanName(field))
+                .withMockBehavior(method);
     }
 
     private String resolveBeanName(Field field) {
