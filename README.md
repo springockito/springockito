@@ -1,6 +1,6 @@
 ### Springockito
 
-This is a small extension to spring that simplifies way of creation mockito mocks in the intergation tests' related context xml files.
+This is a small extension to Spring that simplifies way of creation mockito mocks in the integration tests' related context xml files.
 
 ### Mocking
 
@@ -33,7 +33,7 @@ you can simply override it by mock with the definition in file that is loaded on
 
 ### Spying
 
-Sometimes You are in need of plugin into the established application context to check some action happened on some beans under certain conditions, but you don't want bother recording the actual behavior of beans. Here the spying comes in handy:
+Sometimes you are in need of plugin into the established application context to check some action happened on some beans under certain conditions, but you don't want bother recording the actual behavior of beans. Here the spying comes in handy:
 
 Having definition:
 
@@ -102,7 +102,7 @@ Springockito is available from Maven Central Repository and to use it add follow
 ```
 
 ### Springockito-annotations
-This is a subproject of springockito that pushes the idea even further, ex:
+This is a subproject of Springockito that pushes the idea even further, ex:
 ```java
 @ContextConfiguration(loader = SpringockitoContextLoader.class,
 locations = "classpath:/context.xml")
